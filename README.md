@@ -1,2 +1,8 @@
 # Maybe-its-life
-Even if you know that the glorious sun will not rise tomorrow, even if the bright moon sinks into the sea, even if you have predicted the general trend of the world, even if the ending is all ashes, you will definitely not lose your heart and have an indomitable momentum.
+- Even if you know the glorious sun will not rise tomorrow, 
+- Even if the bright moon sinks beneath the sea, 
+- Even if you foresee the trends of the world, 
+- Even if the end turns everything to ashes, 
+
+You will never lose heart, and you will face it all with unwavering determination and indomitable spirit.
+
