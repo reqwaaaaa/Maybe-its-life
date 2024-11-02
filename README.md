@@ -6,3 +6,4 @@
 
 You will never lose heart, and you will face it all with unwavering determination and indomitable spirit.
 
+***This repository is used to document some study notes and reflections on life. Wish me luck!***
