@@ -1,4 +1,4 @@
-# Maybe-its-life
+# Maybe its life
 - Even if you know the glorious sun will not rise tomorrow, 
 - Even if the bright moon sinks beneath the sea, 
 - Even if you foresee the trends of the world, 
