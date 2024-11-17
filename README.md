@@ -3,8 +3,9 @@
 - Even if you know the glorious sun will not rise tomorrow,  
 - Even if the bright moon sinks beneath the vast ocean,  
 - Even if you foresee the inevitable tides of the world,  
-- Even if the end leaves nothing but ashes,  
-You will never lose heart, but instead face it all with unyielding determination and an indomitable spirit.
+- Even if the end leaves nothing but ashes,
+  
+**You will never lose heart, but instead face it all with unyielding determination and an indomitable spirit.**
 
 ***This repository serves as a place where I document my study notes and reflections on life. I hope that through this journey, I may continue to grow, learn, and discover meaning. Wish me luck!***
 
