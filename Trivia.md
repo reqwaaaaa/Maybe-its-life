@@ -77,6 +77,85 @@
 - **3306 (MySQL)**：MySQL 数据库服务的默认端口，用于数据库连接。
 - **6379 (Redis)**：Redis 数据库服务的默认端口。
 
+## 没用但是可爱
+### 笑脸与表情
+- `:smile:` 😊
+- `:grinning:` 😀
+- `:laughing:` 😆
+- `:wink:` 😉
+- `:blush:` 😊
+- `:heart_eyes:` 😍
+- `:sweat_smile:` 😅
+- `:joy:` 😂
+- `:cry:` 😢
+- `:sob:` 😭
+- `:angry:` 😠
+- `:neutral_face:` 😐
+- `:sunglasses:` 😎
+- `:thumbsup:` 👍
+- `:thumbsdown:` 👎
+
+### 手势
+- `:wave:` 👋
+- `:ok_hand:` 👌
+- `:v:` ✌️
+- `:raised_hand:` ✋
+- `:point_up:` ☝️
+- `:point_right:` 👉
+- `:point_left:` 👈
+- `:clap:` 👏
+- `:pray:` 🙏
+
+### 动物与自然
+- `:dog:` 🐶
+- `:cat:` 🐱
+- `:mouse:` 🐭
+- `:rabbit:` 🐰
+- `:bear:` 🐻
+- `:sunny:` ☀️
+- `:cloud:` ☁️
+- `:snowflake:` ❄️
+- `:fire:` 🔥
+- `:flower:` 🌸
+
+### 食物与饮料
+- `:apple:` 🍎
+- `:banana:` 🍌
+- `:watermelon:` 🍉
+- `:pizza:` 🍕
+- `:hamburger:` 🍔
+- `:cake:` 🍰
+- `:coffee:` ☕
+- `:beer:` 🍺
+
+### 旅行与地点
+- `:airplane:` ✈️
+- `:car:` 🚗
+- `:train:` 🚋
+- `:bus:` 🚌
+- `:ship:` 🚢
+- `:tent:` ⛺
+- `:earth_africa:` 🌍
+
+### 对象与符号
+- `:gift:` 🎁
+- `:trophy:` 🏆
+- `:bell:` 🔔
+- `:lock:` 🔒
+- `:key:` 🔑
+- `:heart:` ❤️
+- `:star:` ⭐
+- `:zap:` ⚡
+- `:bulb:` 💡
+
+### 人物与活动
+- `:runner:` 🏃
+- `:dancer:` 💃
+- `:muscle:` 💪
+- `:family:` 👪
+- `:couple:` 👫
+- `:bow:` 🙇
+- `:skier:` ⛷️
 
 
 
