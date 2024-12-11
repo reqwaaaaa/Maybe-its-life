@@ -6,123 +6,123 @@
 
 ### 1. 泰然自若
 - **中文解释**：形容在紧急情况下仍然镇定自若。
-- **英文翻译**：As cool as a cucumber
+- **英文翻译**：`As cool as a cucumber`
 
 ### 2. 一箭双雕
 - **中文解释**：比喻做一件事能达到两个目的。
-- **英文翻译**：Kill two birds with one stone
+- **英文翻译**：`Kill two birds with one stone`
 
 ### 3. 画蛇添足
 - **中文解释**：比喻多此一举，做了多余的事反而不恰当。
-- **英文翻译**：To paint a snake and add feet to it / To gild the lily
+- **英文翻译**：`To paint a snake and add feet to it / To gild the lily`
 
 ### 4. 刻舟求剑
 - **中文解释**：比喻死守教条，不懂变通。
-- **英文翻译**：To act with disregard for changing circumstances
+- **英文翻译**：`To act with disregard for changing circumstances`
 
 ### 5. 井底之蛙
 - **中文解释**：比喻见识短浅的人。
-- **英文翻译**：A frog in a well
+- **英文翻译**：`A frog in a well`
 
 ### 6. 雪中送炭
 - **中文解释**：在别人急需时给予帮助。
-- **英文翻译**：To offer timely help / To send charcoal in snowy weather
+- **英文翻译**：`To offer timely help` / `To send charcoal in snowy weather`
 
 ### 7. 鹤立鸡群
 - **中文解释**：比喻人或物出类拔萃，与众不同。
-- **英文翻译**：To stand out from the crowd / Like a crane among chickens
+- **英文翻译**：`To stand out from the crowd` / `Like a crane among chickens`
 
 ### 8. 入乡随俗
 - **中文解释**：到了一个地方，就要遵从当地的习俗。
-- **英文翻译**：When in Rome, do as the Romans do
+- **英文翻译**：`When in Rome, do as the Romans do`
 
 ### 9. 背道而驰
 - **中文解释**：比喻行动和目标完全相反。
-- **英文翻译**：To run counter to / To go in opposite directions
+- **英文翻译**：`To run counter to` / `To go in opposite directions`
 
 ### 10. 眼中钉
 - **中文解释**：比喻让人讨厌的人或事物。
-- **英文翻译**：An eyesore
+- **英文翻译**：`An eyesore`
 
 ### 11. 大公无私
 - **中文解释**：形容人办事公正，没有私心。
-- **英文翻译**：Just and selfless / Impartial and unselfish
+- **英文翻译**：`Just and selfless` / `Impartial and unselfish`
 
 ### 12. 虎头蛇尾
 - **中文解释**：比喻做事有始无终，开头声势很大，但最后不了了之。
-- **英文翻译**：A strong start but a weak finish
+- **英文翻译**：`A strong start but a weak finish`
 
 ### 13. 亡羊补牢
 - **中文解释**：比喻出了问题及时采取补救措施。
-- **英文翻译**：Better late than never / To mend the fence after the sheep are lost
+- **英文翻译**：`Better late than never` / `To mend the fence after the sheep are lost`
 
 ### 14. 开门见山
 - **中文解释**：比喻说话直截了当，不绕弯子。
-- **英文翻译**：To get straight to the point
+- **英文翻译**：`To get straight to the point`
 
 ### 15. 百闻不如一见
 - **中文解释**：听得再多也不如亲眼见到更为确切。
-- **英文翻译**：Seeing is believing
+- **英文翻译**：`Seeing is believing`
 
 ### 16. 不可救药
 - **中文解释**：形容情况严重，无法挽救。
-- **英文翻译**：Beyond cure / Incorrigible
+- **英文翻译**：`Beyond cure` / `Incorrigible`
 
 ### 17. 杞人忧天
 - **中文解释**：形容无谓的或过分的担忧。
-- **英文翻译**：A storm in a teacup / To make mountains out of molehills
+- **英文翻译**：`A storm in a teacup` / `To make mountains out of molehills`
 
 ### 18. 一线生机
 - **中文解释**：形容最后的机会。
-- **英文翻译**：A silver lining
+- **英文翻译**：`A silver lining`
 
 ### 19. 打草惊蛇
 - **中文解释**：比喻做事过于急功近利，反而给对方警觉。
-- **英文翻译**：To alert the enemy by acting rashly / To stir up a hornet's nest
+- **英文翻译**：`To alert the enemy by acting rashly` / `To stir up a hornet's nest`
 
 ### 20. 三顾茅庐
 - **中文解释**：形容诚心诚意地邀请他人。
-- **英文翻译**：To make three visits to the thatched cottage / To offer sincere invitations
+- **英文翻译**：`To make three visits to the thatched cottage` / `To offer sincere invitations`
 
 ### 21. 夜长梦多
 - **中文解释**：比喻时间拖得越久，事情就越复杂或不确定。
-- **英文翻译**：The longer the night, the more dreams / The longer you delay, the worse things get
+- **英文翻译**：`The longer the night, the more dreams` / `The longer you delay, the worse things get`
 
 ### 22. 狐假虎威
 - **中文解释**：比喻依仗别人的势力来吓唬人。
-- **英文翻译**：To use the tiger's might to bully others / To act tough by borrowing others' power
+- **英文翻译**：`To use the tiger's might to bully others` / `To act tough by borrowing others' power`
 
 ### 23. 自相矛盾
 - **中文解释**：形容言行前后不一致，互相冲突。
-- **英文翻译**：To contradict oneself / Self-contradiction
+- **英文翻译**：`To contradict oneself` / `Self-contradiction`
 
 ### 24. 不费吹灰之力
 - **中文解释**：形容做事非常容易，不费力气。
-- **英文翻译**：With no effort at all / Without lifting a finger
+- **英文翻译**：`With no effort at all` / `Without lifting a finger`
 
 ### 25. 挥金如土
 - **中文解释**：形容非常浪费，花钱如同土一样不珍惜。
-- **英文翻译**：To spend money like water / To throw money around
+- **英文翻译**：`To spend money like water` / `To throw money around`
 
 ### 26. 纸上谈兵
 - **中文解释**：比喻空谈理论，不能实际解决问题。
-- **英文翻译**：To talk about warfare on paper / To be all theory and no practice
+- **英文翻译**：`To talk about warfare on paper` / `To be all theory and no practice`
 
 ### 27. 盲人摸象
 - **中文解释**：比喻片面了解事物，无法全面掌握。
-- **英文翻译**：Blind men touching an elephant / A limited perspective
+- **英文翻译**：`Blind men touching an elephant` / `A limited perspective`
 
 ### 28. 水滴石穿
 - **中文解释**：比喻坚持不懈，终能成功。
-- **英文翻译**：Constant dripping wears away the stone / Persistence overcomes all obstacles
+- **英文翻译**：`Constant dripping wears away the stone` / `Persistence overcomes all obstacles`
 
-## 29. 一诺千金
+### 29. 一诺千金
 - **中文解释**：形容承诺十分重视，言出必行。
-- **英文翻译**：A promise is worth a thousand gold pieces / A promise is a bond
+- **英文翻译**：`A promise is worth a thousand gold pieces / A promise is a bond`
 
 ### 30. 朝三暮四
 - **中文解释**：形容变化无常，不能持之以恒。
-- **英文翻译**：To change like the weather / To be fickle
+- **英文翻译**：`To change like the weather / To be fickle`
 
 ---
 
