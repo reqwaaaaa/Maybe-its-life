@@ -94,6 +94,118 @@
 
 ---
 
+## 常用作文转接词分类
+
+### 1. 表示递进
+- **Furthermore**
+- **Moreover**
+- **In addition**
+- **What’s more**
+- **Not only that**
+- **Besides**
+
+### 2. 表示对比和转折
+- **However**
+- **Nevertheless**
+- **On the contrary**
+- **In contrast**
+- **On the other hand**
+- **Although**
+- **Even though**
+- **Though**
+
+### 3. 表示因果关系
+- **Therefore**
+- **As a result**
+- **Consequently**
+- **Thus**
+- **Hence**
+- **Because of this**
+- **Owing to**
+- **Due to**
+
+### 4. 表示时间先后
+- **Meanwhile**
+- **Simultaneously**
+- **At the same time**
+- **Afterward**
+- **Subsequently**
+- **Thereafter**
+- **Previously**
+- **Before that**
+
+### 5. 表示举例
+- **For example**
+- **For instance**
+- **To illustrate**
+- **Namely**
+- **Specifically**
+- **In particular**
+
+### 6. 表示总结与结论
+- **In conclusion**
+- **To sum up**
+- **In summary**
+- **All in all**
+- **To conclude**
+- **In short**
+- **In a word**
+- **Ultimately**
+
+### 7. 表示强调
+- **Indeed**
+- **Certainly**
+- **Undoubtedly**
+- **In fact**
+- **Obviously**
+- **Without a doubt**
+- **As a matter of fact**
+
+### 8. 表示顺序
+- **First**
+- **Second**
+- **Third**
+- **Next**
+- **Then**
+- **Finally**
+- **Lastly**
+- **Subsequently**
+
+### 9. 表示条件
+- **If**
+- **Provided that**
+- **As long as**
+- **Unless**
+- **In case**
+- **On condition that**
+- **Supposing that**
+
+### 10. 表示归因
+- **Because**
+- **Since**
+- **As**
+- **For this reason**
+- **In view of**
+- **Due to**
+- **Owing to**
+
+### 11. 表示对比相似
+- **Similarly**
+- **Likewise**
+- **In the same way**
+- **Equally**
+- **Just as**
+
+### 12. 表示强调重要性
+- **Most importantly**
+- **Above all**
+- **Primarily**
+- **Essentially**
+- **Chiefly**
+- **Principally**
+
+---
+
 ## 常见的正则表达式用法
 
 ### 常用正则表达式示例
