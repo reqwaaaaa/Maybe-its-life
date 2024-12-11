@@ -14,7 +14,7 @@
 
 ### 3. 画蛇添足
 - **中文解释**：比喻多此一举，做了多余的事反而不恰当。
-- **英文翻译**：`To paint a snake and add feet to it / To gild the lily`
+- **英文翻译**：`To paint a snake and add feet to it` / `To gild the lily`
 
 ### 4. 刻舟求剑
 - **中文解释**：比喻死守教条，不懂变通。
@@ -118,11 +118,11 @@
 
 ### 29. 一诺千金
 - **中文解释**：形容承诺十分重视，言出必行。
-- **英文翻译**：`A promise is worth a thousand gold pieces / A promise is a bond`
+- **英文翻译**：`A promise is worth a thousand gold pieces` / `A promise is a bond`
 
 ### 30. 朝三暮四
 - **中文解释**：形容变化无常，不能持之以恒。
-- **英文翻译**：`To change like the weather / To be fickle`
+- **英文翻译**：`To change like the weather` / `To be fickle`
 
 ---
 
