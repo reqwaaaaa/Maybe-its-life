@@ -312,12 +312,156 @@ print(dog.speak())  # 输出 'Buddy barks'
 
 ---
 
-### 总结
+## 利用py画表
 
-- **Python 基础语法**：关键字、条件判断、循环。
-- **数据结构操作**：列表、元组、字典、集合的增删改查。
-- **函数和面向对象**：函数定义与调用、lambda 表达式、类与继承。
-- **异常处理与文件操作**：try-except-finally 结构，文件读写。
+### 1. **导入库**
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
+```
+
+- **`pandas`**: 用于创建和操作数据表（DataFrame）。
+- **`matplotlib.pyplot`**: 用于绘制图形和表格。
+- **`rcParams`**: 用于调整 Matplotlib 的全局参数，如图像 DPI 和字体设置。
+
+
+### 2. **字体与符号设置**
+
+```python
+plt.rcParams["font.sans-serif"] = ['SimHei']
+plt.rcParams["axes.unicode_minus"] = False
+rcParams.update({'figure.dpi': 150})
+```
+
+- **`plt.rcParams["font.sans-serif"] = ['SimHei']`**:
+  - 设置 Matplotlib 使用中文字体（黑体）。否则中文可能显示为乱码。
+  
+- **`plt.rcParams["axes.unicode_minus"] = False`**:
+  - 防止负号（`-`）在图表中显示为方块或乱码。
+
+- **`rcParams.update({'figure.dpi': 150})`**:
+  - 设置图像的 DPI（每英寸点数）。值越高，图像越清晰。
+
+
+### 3. **表格数据定义**
+
+```python
+data = {
+    "信息类别": [...],
+    "具体内容": [...],
+    "示例": [...]
+}
+```
+
+- 定义一个字典 `data`，包含表格的内容，每列对应一个键。
+- 每列数据的含义：
+  - **`信息类别`**：描述数据的类型或维度。
+  - **`具体内容`**：具体的数据公式或解释，使用 LaTeX 语法（如 `$n_1 \\\\to n_2 \\\\to \\\\dots$`）。
+  - **`示例`**：提供具体的例子，帮助理解数据类别和内容。
+
+
+#### 4. **创建 DataFrame**
+
+```python
+df = pd.DataFrame(data)
+```
+
+- 将字典 `data` 转换为 `pandas` 的 DataFrame，方便后续操作。
+
+
+### 5. **绘制表格**
+
+```python
+fig, ax = plt.subplots(figsize=(12, 6))
+ax.axis('tight')
+ax.axis('off')
+```
+
+- **`plt.subplots(figsize=(12, 6))`**:
+  - 创建一个绘图对象 `fig` 和一个轴对象 `ax`。
+  - 设置图像的大小为宽 12 英寸、高 6 英寸。
+
+- **`ax.axis('tight')`**:
+  - 自动调整图像内容以适应轴范围。
+
+- **`ax.axis('off')`**:
+  - 隐藏坐标轴。
+
+
+### 6. **绘制表格内容**
+
+```python
+table = ax.table(
+    cellText=df.values,
+    colLabels=df.columns,
+    cellLoc='center',
+    loc='center'
+)
+```
+
+- **`cellText=df.values`**: 指定表格内容为 DataFrame 的值。
+- **`colLabels=df.columns`**: 指定表头为 DataFrame 的列名。
+- **`cellLoc='center'`**: 表格中的文本居中对齐。
+- **`loc='center'`**: 表格在图像中居中显示。
+
+
+### 7. **自动调整字体和列宽**
+
+```python
+table.auto_set_font_size(False)
+table.set_fontsize(10)
+table.auto_set_column_width(col=list(range(len(df.columns))))
+```
+
+- **`table.auto_set_font_size(False)`**: 禁止自动调整字体大小。
+- **`table.set_fontsize(10)`**: 手动将字体大小设置为 10。
+- **`table.auto_set_column_width(col=list(range(len(df.columns))))`**:
+  - 自动调整每列的宽度以适应内容。
+  - 参数 `col=list(range(len(df.columns)))` 确保调整所有列。
+
+
+### 8. **调整行高**
+
+```python
+for key, cell in table.get_celld().items():
+    cell.set_height(0.1)
+```
+
+- 遍历表格的所有单元格，设置每个单元格的高度为 0.1。
+- **`table.get_celld()`**: 获取表格单元格的字典，每个单元格用 `(row, column)` 坐标标识。
+
+
+### 9. **保存图片**
+
+```python
+output_path = "trajectory_hotspot_table_no_whitespace.png"
+plt.savefig(output_path, bbox_inches='tight', dpi=300)
+plt.close(fig)
+```
+
+- **`plt.savefig(output_path, bbox_inches='tight', dpi=300)`**:
+  - 将图像保存为文件。
+  - **`output_path`**: 输出文件路径。
+  - **`bbox_inches='tight'`**: 去除多余留白。
+  - **`dpi=300`**: 高分辨率保存。
+  
+- **`plt.close(fig)`**: 关闭当前图像对象，释放资源。
+
+
+### 10. **打印保存信息**
+
+```python
+print(f"图片保存为 {output_path}")
+```
+
+- 使用 `f-string` 打印保存路径，确认操作成功。
+
+---
+
+
+
 
 
 
