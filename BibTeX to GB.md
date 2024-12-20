@@ -32,6 +32,7 @@
    - Format names as "Last name, First name initials".
    - Separate multiple authors with commas.
    - Example: `Charu C. Aggarwal, Yan Li, Jianyong Wang, Jing Wang` becomes:
+     
      ```markdown
      Aggarwal, C.C., Li, Y., Wang, J.Y., Wang, J.
      ```
@@ -47,6 +48,7 @@
    - Format with italics for the conference name.
    - Include location and date from `booktitle` if provided.
    - Example: `Proceedings of the 15th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, Paris, France, June 28 - July 1, 2009` becomes:
+     
      ```markdown
      _Proceedings of the 15th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining_, Paris, France, 2009.
      ```
