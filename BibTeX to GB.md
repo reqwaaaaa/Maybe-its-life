@@ -50,7 +50,7 @@
    - Example: `Proceedings of the 15th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, Paris, France, June 28 - July 1, 2009` becomes:
      
      ```markdown
-     _Proceedings of the 15th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining_, Paris, France, 2009.
+     Proceedings of the 15th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, Paris, France, 2009.
      ```
 
 4. **Pages**:
@@ -72,6 +72,6 @@
 
 #### Final GB/T 7714-2015 Format
 ```markdown
-[1] Aggarwal, C.C., Li, Y., Wang, J.Y., Wang, J. Frequent pattern mining with uncertain data[C]. _Proceedings of the 15th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining_, Paris, France, 2009: 29-38. DOI: 10.1145/1557019.1557030.
+[1] Aggarwal, C.C., Li, Y., Wang, J.Y., Wang, J. Frequent pattern mining with uncertain data[C]. Proceedings of the 15th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, Paris, France, 2009: 29-38. DOI: 10.1145/1557019.1557030.
 ```
 
