@@ -1,6 +1,6 @@
-### BibTeX to GB/T 7714-2015 Conversion Example
+# BibTeX to GB/T 7714-2015 Conversion Example
 
-#### BibTeX Format
+## BibTeX Format
 ```bibtex
 @inproceedings{DBLP:conf/kdd/AggarwalLWW09,
   author       = {Charu C. Aggarwal and
@@ -26,7 +26,7 @@
 }
 ```
 
-#### Conversion Process to GB/T 7714-2015
+## Conversion Process to GB/T 7714-2015
 1. **Author**:
    - Extract the `author` field.
    - Format names as "Last name, First name initials".
@@ -70,7 +70,7 @@
    - Format as `DOI:` followed by the value.
    - Example: `DOI: 10.1145/1557019.1557030`.
 
-#### Final GB/T 7714-2015 Format
+## Final GB/T 7714-2015 Format
 ```markdown
 [1] Aggarwal, C.C., Li, Y., Wang, J.Y., Wang, J. Frequent pattern mining with uncertain data[C]. Proceedings of the 15th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, Paris, France, 2009: 29-38. DOI: 10.1145/1557019.1557030.
 ```
