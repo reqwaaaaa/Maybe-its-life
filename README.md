@@ -7,7 +7,7 @@
   
 You will never lose heart, but instead face it all with unyielding determination and an indomitable spirit.
 
-***This repository serves as a place where I document my study notes and reflections on life. I hope that through this journey, I may continue to grow, learn, and discover meaning. Wish me luck!***
+***This repository serves as a place where I document my study notes and reflections on life. I hope that through this journey, I may continue to grow, learn, and discover meaning. Wish you luck!***
 
 <!-- 
 即便你知道辉煌的朝阳不会在明天升起，  
