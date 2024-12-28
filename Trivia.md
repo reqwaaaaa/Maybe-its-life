@@ -323,84 +323,75 @@
 - **4500 (IPsec NAT-T)** - Internet Protocol Security，用于 IPsec 穿越 NAT 的通信。
 ---
 ## 没用但是可爱
-### 笑脸与表情
-- `:smile:` 😊
-- `:grinning:` 😀
-- `:laughing:` 😆
-- `:wink:` 😉
-- `:blush:` 😊
-- `:heart_eyes:` 😍
-- `:sweat_smile:` 😅
-- `:joy:` 😂
-- `:cry:` 😢
-- `:sob:` 😭
-- `:angry:` 😠
-- `:neutral_face:` 😐
-- `:sunglasses:` 😎
-- `:thumbsup:` 👍
-- `:thumbsdown:` 👎
+| Category      | Emoji         | Markdown Code       | Unicode       |
+|---------------|---------------|---------------------|---------------|
+| **Smileys**   | 😊            | `:smile:`           | `U+1F60A`     |
+|               | 😀            | `:grinning:`        | `U+1F600`     |
+|               | 😆            | `:laughing:`        | `U+1F606`     |
+|               | 😉            | `:wink:`            | `U+1F609`     |
+|               | 😊            | `:blush:`           | `U+1F60A`     |
+|               | 😍            | `:heart_eyes:`      | `U+1F60D`     |
+|               | 😅            | `:sweat_smile:`     | `U+1F605`     |
+|               | 😂            | `:joy:`             | `U+1F602`     |
+|               | 😢            | `:cry:`             | `U+1F622`     |
+|               | 😭            | `:sob:`             | `U+1F62D`     |
+|               | 😠            | `:angry:`           | `U+1F620`     |
+|               | 😐            | `:neutral_face:`    | `U+1F610`     |
+|               | 😎            | `:sunglasses:`      | `U+1F60E`     |
+|               | 👍            | `:thumbsup:`        | `U+1F44D`     |
+|               | 👎            | `:thumbsdown:`      | `U+1F44E`     |
+| **Gestures**  | 👋            | `:wave:`            | `U+1F44B`     |
+|               | 👌            | `:ok_hand:`         | `U+1F44C`     |
+|               | ✌️            | `:v:`               | `U+270C`      |
+|               | ✋            | `:raised_hand:`     | `U+270B`      |
+|               | ☝️            | `:point_up:`        | `U+261D`      |
+|               | 👉            | `:point_right:`     | `U+1F449`     |
+|               | 👈            | `:point_left:`      | `U+1F448`     |
+|               | 👏            | `:clap:`            | `U+1F44F`     |
+|               | 🙏            | `:pray:`            | `U+1F64F`     |
+| **Animals**   | 🐶            | `:dog:`             | `U+1F436`     |
+|               | 🐱            | `:cat:`             | `U+1F431`     |
+|               | 🐭            | `:mouse:`           | `U+1F42D`     |
+|               | 🐰            | `:rabbit:`          | `U+1F430`     |
+|               | 🐻            | `:bear:`            | `U+1F43B`     |
+| **Nature**    | ☀️            | `:sunny:`           | `U+2600`      |
+|               | ☁️            | `:cloud:`           | `U+2601`      |
+|               | ❄️            | `:snowflake:`       | `U+2744`      |
+|               | 🔥            | `:fire:`            | `U+1F525`     |
+|               | 🌸            | `:flower:`          | `U+1F338`     |
+| **Food**      | 🍎            | `:apple:`           | `U+1F34E`     |
+|               | 🍌            | `:banana:`          | `U+1F34C`     |
+|               | 🍉            | `:watermelon:`      | `U+1F349`     |
+|               | 🍕            | `:pizza:`           | `U+1F355`     |
+|               | 🍔            | `:hamburger:`       | `U+1F354`     |
+|               | 🍰            | `:cake:`            | `U+1F370`     |
+|               | ☕            | `:coffee:`          | `U+2615`      |
+|               | 🍺            | `:beer:`            | `U+1F37A`     |
+| **Travel**    | ✈️            | `:airplane:`        | `U+2708`      |
+|               | 🚗            | `:car:`             | `U+1F697`     |
+|               | 🚋            | `:train:`           | `U+1F68B`     |
+|               | 🚌            | `:bus:`             | `U+1F68C`     |
+|               | 🚢            | `:ship:`            | `U+1F6A2`     |
+|               | ⛺            | `:tent:`            | `U+26FA`      |
+|               | 🌍            | `:earth_africa:`    | `U+1F30D`     |
+| **Objects**   | 🎁            | `:gift:`            | `U+1F381`     |
+|               | 🏆            | `:trophy:`          | `U+1F3C6`     |
+|               | 🔔            | `:bell:`            | `U+1F514`     |
+|               | 🔒            | `:lock:`            | `U+1F512`     |
+|               | 🔑            | `:key:`             | `U+1F511`     |
+|               | ❤️            | `:heart:`           | `U+2764`      |
+|               | ⭐            | `:star:`            | `U+2B50`      |
+|               | ⚡            | `:zap:`             | `U+26A1`      |
+|               | 💡            | `:bulb:`            | `U+1F4A1`     |
+| **People**    | 🏃            | `:runner:`          | `U+1F3C3`     |
+|               | 💃            | `:dancer:`          | `U+1F483`     |
+|               | 💪            | `:muscle:`          | `U+1F4AA`     |
+|               | 👪            | `:family:`          | `U+1F46A`     |
+|               | 👫            | `:couple:`          | `U+1F46B`     |
+|               | 🙇            | `:bow:`             | `U+1F647`     |
+|               | ⛷️            | `:skier:`           | `U+26F7`      |
 
-### 手势
-- `:wave:` 👋
-- `:ok_hand:` 👌
-- `:v:` ✌️
-- `:raised_hand:` ✋
-- `:point_up:` ☝️
-- `:point_right:` 👉
-- `:point_left:` 👈
-- `:clap:` 👏
-- `:pray:` 🙏
 
-### 动物与自然
-- `:dog:` 🐶
-- `:cat:` 🐱
-- `:mouse:` 🐭
-- `:rabbit:` 🐰
-- `:bear:` 🐻
-- `:sunny:` ☀️
-- `:cloud:` ☁️
-- `:snowflake:` ❄️
-- `:fire:` 🔥
-- `:flower:` 🌸
-
-### 食物与饮料
-- `:apple:` 🍎
-- `:banana:` 🍌
-- `:watermelon:` 🍉
-- `:pizza:` 🍕
-- `:hamburger:` 🍔
-- `:cake:` 🍰
-- `:coffee:` ☕
-- `:beer:` 🍺
-
-### 旅行与地点
-- `:airplane:` ✈️
-- `:car:` 🚗
-- `:train:` 🚋
-- `:bus:` 🚌
-- `:ship:` 🚢
-- `:tent:` ⛺
-- `:earth_africa:` 🌍
-
-### 对象与符号
-- `:gift:` 🎁
-- `:trophy:` 🏆
-- `:bell:` 🔔
-- `:lock:` 🔒
-- `:key:` 🔑
-- `:heart:` ❤️
-- `:star:` ⭐
-- `:zap:` ⚡
-- `:bulb:` 💡
-
-### 人物与活动
-- `:runner:` 🏃
-- `:dancer:` 💃
-- `:muscle:` 💪
-- `:family:` 👪
-- `:couple:` 👫
-- `:bow:` 🙇
-- `:skier:` ⛷️
 
 ---
 
