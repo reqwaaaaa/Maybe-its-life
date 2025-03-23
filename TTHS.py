@@ -1,4 +1,5 @@
 # 不会写
+# copy
 from gremlin_python.driver import client
 from gremlin_python.structure.graph import Graph
 import csv
