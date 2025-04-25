@@ -214,3 +214,115 @@ flowchart TD
     classDef store fill:#e1ecff,stroke:#4682ff,stroke-width:1.3px,color:#000;
 ```
 ---
+
+# 高阶语义热点轨迹频繁模式挖掘方案
+
+## 背景说明
+本方案以 `cleaned_paths.csv` 为核心数据基础，构建在三类轨迹热点挖掘算法（**NDTTJ / NDTTT / TTHS**）之上，结合已构造的时空、POI 语义、轨迹结构等多维特征，提出一个可落地、可解释的**频繁语义路径模式挖掘系统**，其目标是：
+
+- 发挥三类热点挖掘算法生成路径序列的结构优势（稳定、高覆盖）；
+- 基于熵加权构建支持度体系（SU-Support），挖掘更有区分度和语义代表性的热点路径模式；
+- 借助自适应算法调度与剪枝，提升效率和表达质量；
+- 支持后续 Web 可视查询与 API 接口输出。
+
+---
+
+## 建模与支持度构建
+
+### 三维熵加权支持度定义（SU-Support）
+
+传统频繁模式支持度为：
+\[ \text{Support}(H) = |\mathcal{T}_H| \]
+
+我们引入三维稳定性加权（空间、时间、语义）：
+
+\[
+\mathrm{SU}(H) = |\mathcal{T}_H| \cdot \left(1 - \lambda \cdot H_s'(H)\right) \cdot \left(1 - \mu \cdot H_t'(H)\right) \cdot \left(1 - \nu \cdot H_{poi}'(H)\right)
+\]
+
+- \( H_s', H_t', H_{poi}' \in [0,1] \)：分别为空间、时间、POI 熵归一化后值；
+- \( \lambda, \mu, \nu \)：三维惩罚系数，控制熵惩罚强度；
+- 当三个熵值越高，路径越不稳定，SU 值越小。
+
+### 差分进化优化权重系数
+使用差分进化（Differential Evolution）寻找三元最优权重参数：
+
+- **目标函数**：
+
+\[
+\max_{\lambda,\mu,\nu} \left[ \alpha \cdot \text{Coverage}(\theta) - (1-\alpha) \cdot \text{Redundancy}(\theta) \right]
+\]
+
+- \(\text{Coverage}\)：SU 前 K 模式覆盖所有轨迹的比例；
+- \(\text{Redundancy}\)：前 K 模式之间的 Jaccard 平均相似度；
+- \(\theta\)：SU 阈值，保留高质量候选集；
+- \(\alpha\)：权衡因子，推荐值为 0.7。
+
+---
+
+## 自适应算法调度机制
+
+### 核心思想：
+- NDTTJ 适合稀疏轨迹结构（连接型 Join）
+- NDTTT 适合中等密度（深度优先 Path-Growth）
+- TTHS 适合稠密区域（图结构下 DFS 遍历）
+
+### 实现方式：
+1. 对每条路径计算空间密度：
+
+\[
+\rho(H) = \frac{1}{H_s'(H) + \varepsilon}
+\]
+
+2. 设置分界阈值 \(\rho_l, \rho_h\)：
+
+| 密度区间           | 调用算法 |
+|--------------------|-----------|
+| \( \rho < \rho_l \)      | NDTTJ    |
+| \( \rho_l \le \rho < \rho_h \) | NDTTT    |
+| \( \rho \ge \rho_h \)     | TTHS     |
+
+3. 可训练决策树/聚类划分 \(\rho\) 区间，动态微调
+
+---
+
+## 模式构建与双层消歧流程
+
+### 步骤一：SU-FP-Tree 构建
+- 将 `path` 序列构建 FP-Tree，使用 SU 值作为浮点计数；
+- 前缀遍历生成候选模式集 \(\mathcal{P}_1\)
+
+### 步骤二：PrefixSpan 补充
+- 使用 Spark MLlib 执行 PrefixSpan，补充遗漏的序列模式 \(\mathcal{P}_2\)
+- 最终模式集 \(\mathcal{P} = \mathcal{P}_1 \cup \mathcal{P}_2\)
+
+### 步骤三：超图 k-Truss 精炼
+- 将模式转为超边图结构 \(\mathcal{G}\)，节点为热点格点；
+- 执行 \(k\)-truss 分解（\(k = \lceil |H|/2 \rceil\)）保留强连通模式
+
+### 步骤四：信息密度增益剪枝
+
+定义模式信息增益：
+
+\[
+\text{Gain}(H) = \frac{\mathrm{SU}(H)}{|H| \cdot \log_2(|\text{POI}_{H}|+1)}
+\]
+
+- $|\text{POI}_H|$：该路径涵盖的 POI 类别数目
+- 使用阈值 \(\tau_G\) 保留高 Gain 模式
+
+---
+
+## 实验流程与模块落地
+
+| 模块             | 工具/方法                  | 输入列                             | 说明                     |
+|------------------|-----------------------------|-------------------------------------|--------------------------|
+| 特征归一化       | pandas/sklearn              | `time_entropy`, `spatial_entropy`, `poi_entropy` | 归一化到 [0,1]            |
+| SU 计算 & DE调参 | numpy + deap                | `frequency`, 上述熵列               | 输出 SU 值和 (λ,μ,ν)最优组合 |
+| 调度标签学习     | sklearn DecisionTreeClassifier | `source`, `spatial_entropy`         | 预测当前热点适用算法类别   |
+| FP-Tree 构建     | 自定义 FP-Tree 类             | `path`, `SU`                       | 构建序列频繁模式树         |
+| PrefixSpan       | Spark MLlib                 | `path`                             | 规则匹配追加候选           |
+| k-truss 剪枝     | NetworkX or custom impl     | `path`节点                         | 保留强结构模式             |
+| Gain 计算        | numpy                       | SU值, `path_length`, `poi_types`   | 信息密度排序               |
+
+---
