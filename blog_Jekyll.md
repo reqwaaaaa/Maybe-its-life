@@ -195,15 +195,6 @@ reqwaaaaa.github.io/
 
 ---
 
-## 11. 后续支持事项
+## 11. 示例
 
-- 完成 `_config.yml` 全配置
-- 生成首页、About页、分类目录页
-- 生成初版 `_posts` 示例文章
-- 配置 Minimal Mistakes 的 YAML 结构
-- 本地优化 Jekyll Serve 测速
-- 指导如何使用 git 管理文章增删改查
-- 持续优化 CSS 样式 / 添加个人 Logo
-- 指导绑定自定义域名（如果后续需要）
-
----
+[奶味蓝蓝电台](https://reqwaaaaa.github.io/)
