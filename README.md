@@ -15,6 +15,5 @@ You will never lose heart, but instead face it all with unyielding determination
 即便你预见了世界不可逆转的潮流，  
 即便最终的一切化为灰烬，  
 你依然不会失去勇气，而是以坚定的决心与不屈的精神去面对这一切。
-我是奶味蓝蓝,好运！
 -->
 
