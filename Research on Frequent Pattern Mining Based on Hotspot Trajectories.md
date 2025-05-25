@@ -155,174 +155,158 @@ T_1=\{\bigl( v_i, v_j, \text{traj\_set}_{ij}\bigr)\mid (v_i\to v_j)\in E\}.
 利用 Neo4j / JanusGraph **免索引邻接**优势，按边权“度”剪枝。
 
 ---
+## 基础概念补充
 
-## 4. 多维特征工程
+### 热点轨迹序列的POI映射（扩展定义）
 
-### 4.1 时间特征
-* **平均起始时刻** \(\bar{h}=\dfrac{1}{|\mathrm{SG}|}\sum_i h_i\)
-* **时间熵** \(H_t=-\sum_{b} p_b\log_2 p_b\)
-
-### 4.2 空间特征
-* **欧氏路径长**：\(L=\sum_{i=1}^{k-1}\|\mathbf{v}_{i+1}-\mathbf{v}_{i}\|_2\)
-* **空间熵**：对经纬度各做 1D 熵并求和。
-
-### 4.3 语义特征
-* **主导 POI**：\(\arg\max_{c} \text{freq}(c)\)
-* **POI 熵** \(H_{poi}\)，衡量类型多样性。
-
----
-
-## 5. 数据流程汇总
-
-```mermaid
-flowchart TD
-    %% ========== ① 数据清洗 ==========
-    A["Geolife .plt<br/>Raw trajectories"] -->|"15-min<br/>Sampling"| B["Cleaned CSV"]
-
-    %% 拆分
-    B --> NODES["nodes.csv"]
-    B --> EDGES["edges.csv"]
-    B --> META["traj_metadata.csv"]
-
-    %% ========== ② 热点挖掘 ==========
-    %% ---- Path-table line ----
-    META --> PT1["1-degree<br/>Path Table"]
-    PT1 --> HT1["NDTTJ / NDTTT<br/>Hotspots"]:::algo
-
-    %% ---- Graph line ----
-    NODES & EDGES --> GDB["Neo4j / JanusGraph"]:::store
-    GDB --> HT2["TTHS<br/>Hotspots"]:::algo
-
-    %% 合并
-    HT1 & HT2 --> M["Merged hotspot set"]
-
-    %% ========== ③ 三维特征 ==========
-    M -->|时间映射| TF["Temporal features"]
-    M -->|空间投影| SF["Spatial features"]
-    M -->|POI映射| PF["Semantic features"]
-    NODES --> PF
-    META  --> TF
-
-    TF & SF & PF --> EH["Enhanced hotspot table"]
-
-    %% ========== ④ 质量清洗 ==========
-    EH -->|"IQR-trim<br/>(length)"| CQ{"滤除极端值"}
-    CQ --> FP["Final cleaned paths.csv"]
-
-    %% ---------- 样式 ----------
-    classDef algo  fill:#ffe2e2,stroke:#d44,stroke-width:1.3px,color:#000;
-    classDef store fill:#e1ecff,stroke:#4682ff,stroke-width:1.3px,color:#000;
-```
----
-
-# 高阶语义热点轨迹频繁模式挖掘方案
-
-## 背景说明
-本方案以 `cleaned_paths.csv` 为核心数据基础，构建在三类轨迹热点挖掘算法（**NDTTJ / NDTTT / TTHS**）之上，结合已构造的时空、POI 语义、轨迹结构等多维特征，提出一个可落地、可解释的**频繁语义路径模式挖掘系统**，其目标是：
-
-- 发挥三类热点挖掘算法生成路径序列的结构优势（稳定、高覆盖）；
-- 基于熵加权构建支持度体系（SU-Support），挖掘更有区分度和语义代表性的热点路径模式；
-- 借助自适应算法调度与剪枝，提升效率和表达质量；
-- 支持后续 Web 可视查询与 API 接口输出。
-
----
-
-## 建模与支持度构建
-
-### 三维熵加权支持度定义（SU-Support）
-
-传统频繁模式支持度为：
-\[ \text{Support}(H) = |\mathcal{T}_H| \]
-
-我们引入三维稳定性加权（空间、时间、语义）：
-
+在第一层挖掘中，热点轨迹 \( H = \{n_1 \to n_2 \to \dots \to n_k\} \) 已通过空间聚类和并置模式提取。利用高德地图API，每个热点节点 \( n_i \) 被映射为POI类型（如“科教文化服务”、“休闲”），生成POI类型序列：
 \[
-\mathrm{SU}(H) = |\mathcal{T}_H| \cdot \left(1 - \lambda \cdot H_s'(H)\right) \cdot \left(1 - \mu \cdot H_t'(H)\right) \cdot \left(1 - \nu \cdot H_{poi}'(H)\right)
+S_H = \{ \text{POI}_1 \to \text{POI}_2 \to \dots \to \text{POI}_k \}.
 \]
 
-- \( H_s', H_t', H_{poi}' \in [0,1] \)：分别为空间、时间、POI 熵归一化后值；
-- \( \lambda, \mu, \nu \)：三维惩罚系数，控制熵惩罚强度；
-- 当三个熵值越高，路径越不稳定，SU 值越小。
+- **有向性**：POI序列严格保留访问顺序，即 \( \text{POI}_i \to \text{POI}_{i+1} \) 表示从 \( \text{POI}_i \) 到 \( \text{POI}_{i+1} \) 的单向转移。
+- **时段性**：基于时间戳 \( t_i \)，将序列按时间窗口分割（如上午、下午）。定义时间窗口 \( W(t) \)：
+  \[
+  W(t) =
+  \begin{cases} 
+  \text{上午}, & \text{if } 6:00 \leq t < 12:00, \\
+  \text{下午}, & \text{if } 12:00 \leq t < 18:00, \\
+  \text{晚上}, & \text{if } 18:00 \leq t < 24:00.
+  \end{cases}
+  \]
+  每个 \( S_H \) 被标注为 \( S_H^w \)，表示在时间窗口 \( w \) 内的POI序列。
 
-### 差分进化优化权重系数
-使用差分进化（Differential Evolution）寻找三元最优权重参数：
-
-- **目标函数**：
-
+#### 新定义：POI转移概率
+为量化POI类型间的转移倾向，定义转移概率 \( P(\text{POI}_j \mid \text{POI}_i, w) \)，表示在时间窗口 \( w \) 内从 \( \text{POI}_i \) 转移到 \( \text{POI}_j \) 的条件概率：
 \[
-\max_{\lambda,\mu,\nu} \left[ \alpha \cdot \text{Coverage}(\theta) - (1-\alpha) \cdot \text{Redundancy}(\theta) \right]
+P(\text{POI}_j \mid \text{POI}_i, w) = \frac{\text{count}(\text{POI}_i \to \text{POI}_j, w)}{\sum_{\text{POI}_k} \text{count}(\text{POI}_i \to \text{POI}_k, w)},
+\]
+其中 \( \text{count}(\text{POI}_i \to \text{POI}_j, w) \) 是 \( S_H^w \) 中 \( \text{POI}_i \to \text{POI}_j \) 的出现次数。
+
+### 母路径的定义（扩展）
+
+母路径 \( T_{\text{mother}} \) 是包含热点轨迹 \( H \) 的原始轨迹集合，由`traj_ids`（格式为`<uid, traj_id>`）标识：
+\[
+T_{\text{mother}} = \{ T \mid T \in G_a, H \subseteq T \},
+\]
+其中 \( T = \{p_1 \to p_2 \to \dots \to p_m\} \)，每个点 \( p_i \) 映射为POI类型，生成母路径的POI序列 \( S_T \)。
+
+#### 新定义：母路径的扩展子序列
+定义母路径中包含热点轨迹 \( H \) 后的扩展子序列 \( S_T^{\text{ext}} \)，即从 \( H \) 的最后一个POI类型开始的后续序列：
+\[
+S_T^{\text{ext}} = \{ \text{POI}_{k+1} \to \text{POI}_{k+2} \to \dots \to \text{POI}_m \mid S_T = S_H \cup S_T^{\text{ext}} \}.
 \]
 
-- \(\text{Coverage}\)：SU 前 K 模式覆盖所有轨迹的比例；
-- \(\text{Redundancy}\)：前 K 模式之间的 Jaccard 平均相似度；
-- \(\theta\)：SU 阈值，保留高质量候选集；
-- \(\alpha\)：权衡因子，推荐值为 0.7。
+### 频繁模式的定义（统计严格化）
 
----
-
-## 自适应算法调度机制
-
-### 核心思想：
-- NDTTJ 适合稀疏轨迹结构（连接型 Join）
-- NDTTT 适合中等密度（深度优先 Path-Growth）
-- TTHS 适合稠密区域（图结构下 DFS 遍历）
-
-### 实现方式：
-1. 对每条路径计算空间密度：
-
+#### 序列模式（改进）
+给定POI序列集合 \( S \)，频繁子序列 \( S_f \) 满足支持度阈值：
 \[
-\rho(H) = \frac{1}{H_s'(H) + \varepsilon}
+\text{support}(S_f) = \frac{|\{S_i \mid S_f \subseteq S_i, S_i \in S \}|}{|S|} \geq \text{sup}_{\text{min}}.
 \]
 
-2. 设置分界阈值 \(\rho_l, \rho_h\)：
-
-| 密度区间           | 调用算法 |
-|--------------------|-----------|
-| \( \rho < \rho_l \)      | NDTTJ    |
-| \( \rho_l \le \rho < \rho_h \) | NDTTT    |
-| \( \rho \ge \rho_h \)     | TTHS     |
-
-3. 可训练决策树/聚类划分 \(\rho\) 区间，动态微调
-
----
-
-## 模式构建与双层消歧流程
-
-### 步骤一：SU-FP-Tree 构建
-- 将 `path` 序列构建 FP-Tree，使用 SU 值作为浮点计数；
-- 前缀遍历生成候选模式集 \(\mathcal{P}_1\)
-
-### 步骤二：PrefixSpan 补充
-- 使用 Spark MLlib 执行 PrefixSpan，补充遗漏的序列模式 \(\mathcal{P}_2\)
-- 最终模式集 \(\mathcal{P} = \mathcal{P}_1 \cup \mathcal{P}_2\)
-
-### 步骤三：超图 k-Truss 精炼
-- 将模式转为超边图结构 \(\mathcal{G}\)，节点为热点格点；
-- 执行 \(k\)-truss 分解（\(k = \lceil |H|/2 \rceil\)）保留强连通模式
-
-### 步骤四：信息密度增益剪枝
-
-定义模式信息增益：
-
+##### 加权支持度
+为考虑时段性和POI转移概率，引入加权支持度：
 \[
-\text{Gain}(H) = \frac{\mathrm{SU}(H)}{|H| \cdot \log_2(|\text{POI}_{H}|+1)}
+\text{support}_w(S_f) = \frac{\sum_{S_i \in S, S_f \subseteq S_i} w(S_f, S_i)}{\sum_{S_i \in S} w(S_i)},
+\]
+其中 \( w(S_f, S_i) = \prod_{(\text{POI}_a \to \text{POI}_b) \in S_f} P(\text{POI}_b \mid \text{POI}_a, w) \cdot e^{-\lambda |\Delta t|} \)，结合转移概率和时间衰减。
+
+#### 图模式（改进）
+构建POI类型图 \( G(V, E) \)，节点为POI类型，边为转移关系，边权为转移概率 \( P(\text{POI}_j \mid \text{POI}_i, w) \)。频繁子图 \( G_f \) 满足：
+\[
+\text{support}(G_f) = \frac{|\{G_i \mid G_f \subseteq G_i, G_i \in G \}|}{|G|} \geq \text{sup}_{\text{min}}.
 \]
 
-- $|\text{POI}_H|$：该路径涵盖的 POI 类别数目
-- 使用阈值 \(\tau_G\) 保留高 Gain 模式
+##### 子图置信度
+定义子图的置信度，衡量其预测能力：
+\[
+\text{confidence}(G_f) = \frac{1}{|E_f|} \sum_{(\text{POI}_i \to \text{POI}_j) \in E_f} P(\text{POI}_j \mid \text{POI}_i, w),
+\]
+其中 \( E_f \) 是子图 \( G_f \) 的边集。
 
----
+## 研究思路（续）
 
-## 实验流程与模块落地
+### 阶段1：热点轨迹特性挖掘
 
-| 模块             | 工具/方法                  | 输入列                             | 说明                     |
-|------------------|-----------------------------|-------------------------------------|--------------------------|
-| 特征归一化       | pandas/sklearn              | `time_entropy`, `spatial_entropy`, `poi_entropy` | 归一化到 [0,1]            |
-| SU 计算 & DE调参 | numpy + deap                | `frequency`, 上述熵列               | 输出 SU 值和 (λ,μ,ν)最优组合 |
-| 调度标签学习     | sklearn DecisionTreeClassifier | `source`, `spatial_entropy`         | 预测当前热点适用算法类别   |
-| FP-Tree 构建     | 自定义 FP-Tree 类             | `path`, `SU`                       | 构建序列频繁模式树         |
-| PrefixSpan       | Spark MLlib                 | `path`                             | 规则匹配追加候选           |
-| k-truss 剪枝     | NetworkX or custom impl     | `path`节点                         | 保留强结构模式             |
-| Gain 计算        | numpy                       | SU值, `path_length`, `poi_types`   | 信息密度排序               |
+#### 目标
+提取热点轨迹的“种子”模式，结合统计概率和时段性。
+
+#### 输入
+热点轨迹的POI序列集合 \( S_H \)，包含时段信息。
+
+#### 方法
+1. **时段分割与转移概率计算**：
+   - 按时间窗口 \( W(t) \) 分割 \( S_H \)，生成 \( S_H^w \)。
+   - 计算每个时间窗口内的转移概率 \( P(\text{POI}_j \mid \text{POI}_i, w) \)。
+2. **序列模式挖掘（基于Apriori和PrefixSpan改进）**：
+   - **Apriori-based方法**：首先生成1阶频繁子序列（如“科教文化服务 -> 休闲”），通过连接生成高阶候选模式，计算加权支持度 \( \text{support}_w \)，筛选满足 \( \text{sup}_{\text{min}} \) 的模式。
+   - **PrefixSpan-based方法**：以模式增长方式挖掘频繁子序列，加入时段权重 \( w_t = e^{-\lambda |\Delta t|} \)，减少候选生成，提高效率。
+3. **图模式挖掘**：
+   - 构建POI类型图 \( G(V, E) \)，边权为 \( P(\text{POI}_j \mid \text{POI}_i, w) \)。
+   - 使用模式增长算法（如ESGROWTH），挖掘频繁子图，筛选支持度和置信度均满足阈值的子图。
+
+#### 输出
+种子模式（如“科教文化服务 -> 休闲”，加权支持度0.8，置信度0.7）。
+
+#### 创新点
+- **加权支持度**：结合转移概率和时间衰减，增强模式的时空相关性。
+- **双算法融合**：Apriori适合稀疏数据，PrefixSpan适合稠密数据，结合两者提升挖掘效率和准确性。
+
+### 阶段2：母路径扩展挖掘（创新）
+
+#### 目标
+基于种子模式，挖掘母路径中的扩展模式，预测后续活动。
+
+#### 输入
+种子模式 + 母路径的POI序列集合 \( T_{\text{mother}} \).
+
+#### 方法
+1. **序列扩展（基于PrefixSpan改进）**：
+   - 以种子模式为前缀，提取 \( S_T^{\text{ext}} \)，生成扩展序列。
+   - 使用PrefixSpan挖掘频繁扩展子序列，计算加权支持度 \( \text{support}_w \)。
+   - 引入**语义约束**：若扩展子序列中出现不合理转移（如“科教文化服务 -> 科教文化服务”），降低其权重或剔除。
+2. **图扩展（基于图模式增长）**：
+   - 将 \( T_{\text{mother}} \) 的POI序列融入热点轨迹图，更新边权。
+   - 使用模式增长算法挖掘频繁子图，计算支持度和置信度。
+   - **动态边权调整**：根据时段和用户群体（基于`uid`）动态调整边权，例如学生群体的“科教 -> 休闲”边权更高。
+3. **用户分组**：
+   - 基于`uid`分组，分别挖掘不同用户群体的扩展模式，分析行为差异。
+
+#### 输出
+扩展模式（如“科教文化服务 -> 休闲 -> 娱乐”，加权支持度0.6，置信度0.65）。
+
+#### 创新点
+- **语义约束**：引入POI类型间的语义合理性，减少无效模式。
+- **动态边权**：结合时段和用户特性，增强图模式的个性化。
+
+### 阶段3：行为趋向分析与预测（创新）
+
+#### 目标
+利用挖掘的模式，预测后续行为，分析用户行为差异。
+
+#### 方法
+- **预测任务**：
+  - 基于扩展模式，预测母路径的后续POI类型。
+  - 使用置信度最高的模式进行预测：
+    \[
+    \text{predicted POI} = \arg\max_{\text{POI}_j} \text{confidence}(S_f \to \text{POI}_j).
+    \]
+- **行为分析**：
+  - 通过`uid`分组，识别不同用户群体的行为趋向。
+  - **统计检验**：使用卡方检验验证群体间模式差异的显著性：
+    \[
+    \chi^2 = \sum \frac{(\text{observed} - \text{expected})^2}{\text{expected}},
+    \]
+    其中 \( \text{observed} \) 为实际模式频率，\( \text{expected} \) 为均匀分布假设下的期望频率。
+- **评估指标**：
+  - **支持度**：模式出现频率（加权支持度）。
+  - **置信度**：后续POI的条件概率。
+  - **预测准确率**：预测结果与实际的匹配比例。
+  - **显著性**：卡方检验的p值，验证模式差异的统计显著性。
+
+#### 创新点
+- **统计检验**：引入卡方检验，确保行为分析的统计严谨性。
+- **置信度预测**：基于概率模型提升预测可靠性。
 
 ---
